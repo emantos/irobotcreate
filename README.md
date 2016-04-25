@@ -1,7 +1,7 @@
-kapre-create
+irobotcreate
 ============
 
-kapre-create is my attempt to create a Command-based API for the iRobot Create.
+irobotcreate is my attempt to create a Command-based API written in Java for the iRobot Create.
 
 My testing device is a raspberry pi connected to the irobot create via the UART over USB.
 
@@ -12,7 +12,7 @@ How to Use
 
 1. Connect the serial usb cable from computer to robot.
 2. Build the source code <code>mvn clean package</code>
-3. Run the shell <code>java -jar target/irobotcreate-1.0-SNAPSHOT-jar-with-dependencies.jar</code>
+3. Run the shell <code>java -jar target/irobotcreate-shell-1.0-SNAPSHOT-jar-with-dependencies.jar</code>
 4. Choose which serial port to use.
 
 The Shell
