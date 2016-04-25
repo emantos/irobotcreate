@@ -12,9 +12,9 @@ How to Use
 
 1. Connect the serial usb cable from computer to robot.
 2. Build the api source code, go to irobotcreate-api directory and <code>mvn clean install</code>
-3. Build the shell source code, go to irobotcreate-shell directory and <code>mvn clean package</code>
-3. Run the shell <code>java -jar target/irobotcreate-shell-1.0-SNAPSHOT-jar-with-dependencies.jar</code>
-4. Choose which serial port to use.
+4. Build the shell source code, go to irobotcreate-shell directory and <code>mvn clean package</code>
+5. Run the shell <code>java -jar target/irobotcreate-shell-1.0-SNAPSHOT-jar-with-dependencies.jar</code>
+6. Choose which serial port to use.
 
 The Shell
 =========
