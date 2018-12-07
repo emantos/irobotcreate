@@ -45,20 +45,20 @@ Under construction :D
 
 * In your code, create an instance of the SerialPortConnection (to your serial port), and the IRobotCreate.
 
-```java
-Connection connection = new SerialPortConnection("/dev/ttyUSB0", DEFAULT_TIMEOUT);
-IRobotCreate executor = new IRobotCreate(connection);
-```
+  ```java
+  Connection connection = new SerialPortConnection("/dev/ttyUSB0", DEFAULT_TIMEOUT);
+  IRobotCreate executor = new IRobotCreate(connection);
+  ```
 
 * Create command instance and execute it (always start with start and setFull).
 
-```java
-Command start = CommandFactory.start();
-Command setFull = CommandFactory.setFull();
-Command moveTo = CommandFactory.moveTo(2000, 100);
+  ```java
+  Command start = CommandFactory.start();
+  Command setFull = CommandFactory.setFull();
+  Command moveTo = CommandFactory.moveTo(2000, 100);
 
-executor.execute(start);
-executor.execute(setFull);
-executor.execute(moveTo);
-```
+  executor.execute(start);
+  executor.execute(setFull);
+  executor.execute(moveTo);
+  ```
 
