@@ -1,4 +1,4 @@
-irobotcreate
+iRobotCreate
 ============
 
 irobotcreate is my attempt to create a Command-based API written in Java for the iRobot Create.
