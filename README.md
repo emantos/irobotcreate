@@ -46,6 +46,8 @@ How to Use (programmatically)
   ```java
   Connection connection = new SerialPortConnection("/dev/ttyUSB0", DEFAULT_TIMEOUT);
   IRobotCreate executor = new IRobotCreate(connection);
+  
+  executor.init()
   ```
 
 * Create command instance and execute it (always start with start and setFull).
