@@ -7,8 +7,8 @@ My testing device is a raspberry pi connected to the irobot create via the UART 
 
 I have also tested the API on a Lenovo Laptop connected to the irobot create via UART
 
-How to Use
-==========
+How to Use (CLI)
+================
 
 1. Connect the serial usb cable from computer to robot.
 2. Build the api source code, go to irobotcreate-api directory and <code>mvn clean install</code>
@@ -24,10 +24,8 @@ The Shell
 * <code>turn 180 50</code> Turn-around using 50mm/sec velocity
 * And many more.
 
-API
-===
-
-Under construction :D
+How to Use (programmatically)
+==================================
 
 * Import maven dependency to your project
   ```xml
