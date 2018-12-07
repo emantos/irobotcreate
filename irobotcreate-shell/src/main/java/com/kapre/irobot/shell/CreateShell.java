@@ -1,12 +1,12 @@
 package com.kapre.irobot.shell;
 
 import java.io.Console;
-
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import com.kapre.irobot.Command;
 import com.kapre.irobot.Connection;
 import com.kapre.irobot.IRobotCreate;
+import com.kapre.irobot.IRobotCreateException;
 import com.kapre.irobot.SensorData;
 import com.kapre.irobot.enums.OpCode;
 import com.kapre.irobot.impl.BaudCommand;
@@ -20,7 +20,6 @@ import com.kapre.irobot.impl.OpCommand;
 import com.kapre.irobot.impl.SensorCommand;
 import com.kapre.irobot.impl.TurnCommand;
 import com.kapre.irobot.impl.WaitCommand;
-
 import jssc.SerialPortList;
 
 public class CreateShell {
@@ -73,6 +72,8 @@ public class CreateShell {
             console.format("Command successful.\n");
           }
         } catch (InterpreterException e) {
+          printException(console, e);
+        } catch (IRobotCreateException e) {
           printException(console, e);
         }
       }

@@ -22,7 +22,7 @@ public class SerialPortConnection implements Connection {
       serialPort.setParams(SerialPort.BAUDRATE_57600, SerialPort.DATABITS_8,
           SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
     } catch (SerialPortException e) {
-      throw new RuntimeException("Error opening serial port", e);
+      throw new ConnectionException("Error opening serial port", e);
     }
   }
 
@@ -30,7 +30,7 @@ public class SerialPortConnection implements Connection {
     try {
       serialPort.writeBytes(bytes);
     } catch (SerialPortException e) {
-      throw new RuntimeException("Error sending through serial port", e);
+      throw new ConnectionException("Error sending through serial port", e);
     }
   }
 
@@ -38,10 +38,10 @@ public class SerialPortConnection implements Connection {
     try {
       return serialPort.readBytes(length, recvTimeout);
     } catch (SerialPortTimeoutException e) {
-      throw new RuntimeException("Not able to receive " + length
+      throw new ConnectionException("Not able to receive " + length
           + " amount of bytes from serial port within " + recvTimeout, e);
     } catch (SerialPortException e) {
-      throw new RuntimeException("Error receiving through serial port", e);
+      throw new ConnectionException("Error receiving through serial port", e);
     }
   }
 
@@ -49,7 +49,7 @@ public class SerialPortConnection implements Connection {
     try {
       serialPort.closePort();
     } catch (SerialPortException e) {
-      throw new RuntimeException("Error closing serial port", e);
+      throw new ConnectionException("Error closing serial port", e);
     }
   }
 

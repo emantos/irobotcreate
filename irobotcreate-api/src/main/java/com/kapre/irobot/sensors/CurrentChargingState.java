@@ -13,7 +13,7 @@ public class CurrentChargingState extends AbstractSensorData {
     if (chargingState.isPresent()) {
       state = chargingState.get();
     } else {
-      throw new RuntimeException("Charging State has invalid value : "
+      throw new IRobotSensorException("Charging State has invalid value : "
           + data[0]);
     }
   }

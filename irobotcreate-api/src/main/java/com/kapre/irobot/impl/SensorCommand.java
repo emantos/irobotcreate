@@ -1,7 +1,7 @@
 package com.kapre.irobot.impl;
 
 import java.lang.reflect.Constructor;
-
+import com.kapre.irobot.IRobotCreateException;
 import com.kapre.irobot.SensorData;
 import com.kapre.irobot.enums.OpCode;
 import com.kapre.irobot.enums.SensorPacket;
@@ -35,7 +35,7 @@ public class SensorCommand extends AbstractCommand {
       return (K) responseConstructor.newInstance(sensorPacket.packetName,
           response);
     } catch (Exception e) {
-      throw new RuntimeException(
+      throw new IRobotCommandException(
           "This shouldn't have happened but if it did, contact me at emantos@gmail.com");
     }
   }
