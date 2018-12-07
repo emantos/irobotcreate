@@ -7,8 +7,8 @@ My testing device is a raspberry pi connected to the irobot create via the UART 
 
 I have also tested the API on a Lenovo Laptop connected to the irobot create via UART
 
-How to Use
-==========
+How to Use (CLI)
+================
 
 1. Connect the serial usb cable from computer to robot.
 2. Build the api source code, go to irobotcreate-api directory and <code>mvn clean install</code>
@@ -24,7 +24,39 @@ The Shell
 * <code>turn 180 50</code> Turn-around using 50mm/sec velocity
 * And many more.
 
-API
-===
+How to Use (programmatically)
+==================================
 
-Under construction :D
+* Import maven dependency to your project
+  ```xml
+  <dependency>
+    <groupId>com.kapre</groupId>
+    <artifactId>irobotcreate-api</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </dependency>
+  <dependency>
+    <groupId>com.kapre</groupId>
+    <artifactId>irobotcreate-shell</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </dependency>
+  ```
+
+* In your code, create an instance of the SerialPortConnection (to your serial port), and the IRobotCreate.
+
+  ```java
+  Connection connection = new SerialPortConnection("/dev/ttyUSB0", DEFAULT_TIMEOUT);
+  IRobotCreate executor = new IRobotCreate(connection);
+  ```
+
+* Create command instance and execute it (always start with start and setFull).
+
+  ```java
+  Command start = CommandFactory.start();
+  Command setFull = CommandFactory.setFull();
+  Command moveTo = CommandFactory.moveTo(2000, 100);
+
+  executor.execute(start);
+  executor.execute(setFull);
+  executor.execute(moveTo);
+  ```
+
