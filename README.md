@@ -30,7 +30,6 @@ API
 Under construction :D
 
 * Import maven dependency to your project
-<code>
   ```xml
   <dependency>
     <groupId>com.kapre</groupId>
@@ -43,28 +42,23 @@ Under construction :D
     <version>1.0-SNAPSHOT</version>
   </dependency>
   ```
-</code>
 
 * In your code, create an instance of the SerialPortConnection (to your serial port), and the IRobotCreate.
 
-<code>
-  ```java
-  Connection connection = new SerialPortConnection("/dev/ttyUSB0", DEFAULT_TIMEOUT);
-  IRobotCreate executor = new IRobotCreate(connection);
-  ```
-</code>
+```java
+Connection connection = new SerialPortConnection("/dev/ttyUSB0", DEFAULT_TIMEOUT);
+IRobotCreate executor = new IRobotCreate(connection);
+```
 
 * Create command instance and execute it (always start with start and setFull).
 
-<code>
-  ```java
-  Command start = CommandFactory.start();
-  Command setFull = CommandFactory.setFull();
-  Command moveTo = CommandFactory.moveTo(100, 500);
-  
-  executor.execute(start);
-  executor.execute(setFull);
-  executor.execute(moveTo);
-  ```
-</code>
+```java
+Command start = CommandFactory.start();
+Command setFull = CommandFactory.setFull();
+Command moveTo = CommandFactory.moveTo(100, 500);
+
+executor.execute(start);
+executor.execute(setFull);
+executor.execute(moveTo);
+```
 
