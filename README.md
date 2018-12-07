@@ -55,7 +55,7 @@ IRobotCreate executor = new IRobotCreate(connection);
 ```java
 Command start = CommandFactory.start();
 Command setFull = CommandFactory.setFull();
-Command moveTo = CommandFactory.moveTo(100, 500);
+Command moveTo = CommandFactory.moveTo(2000, 100);
 
 executor.execute(start);
 executor.execute(setFull);
