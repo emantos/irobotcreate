@@ -10,6 +10,7 @@ import com.kapre.irobot.impl.DigitalOutputCommand;
 import com.kapre.irobot.impl.DriveCommand;
 import com.kapre.irobot.impl.LedCommand;
 import com.kapre.irobot.impl.LowSideDriver;
+import com.kapre.irobot.impl.MoveToCommand;
 import com.kapre.irobot.impl.OpCommand;
 import com.kapre.irobot.impl.SensorCommand;
 import com.kapre.irobot.impl.WaitCommand;
@@ -85,5 +86,9 @@ public class CommandFactory {
 
   public static Command sensor(int packetId) {
     return new SensorCommand(packetId);
+  }
+  
+  public static Command moveTo(Short distance, Short velocity) {
+    return new MoveToCommand(distance, velocity);
   }
 }
