@@ -59,4 +59,4 @@ How to Use (programmatically)
   executor.execute(setFull);
   executor.execute(moveTo);
   ```
-
+* The CommandFactory is a factory class for all primitive commands supported by iRobot's Create. You can also create composite commands (commands made up of several primitives). Check the MoveToCommand class for an example on how to create a composite command.
