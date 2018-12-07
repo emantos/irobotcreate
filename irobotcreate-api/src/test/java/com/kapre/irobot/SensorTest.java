@@ -14,7 +14,7 @@ public class SensorTest {
   @Test
   public void test() {
     Command command = CommandFactory.sensor(7);
-    assertEquals(command.getLengthResponse(), 1);
+    assertEquals(command.getResponseLength(), 1);
     assertEquals(command.isExpectResponse(), true);
   }
 

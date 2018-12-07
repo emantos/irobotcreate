@@ -21,7 +21,7 @@ public class AbstractCommand implements Command {
     return false;
   }
 
-  public int getLengthResponse() {
+  public int getResponseLength() {
     return 0;
   }
 

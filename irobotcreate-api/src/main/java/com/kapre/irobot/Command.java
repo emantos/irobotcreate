@@ -6,7 +6,7 @@ public interface Command {
 
   boolean isExpectResponse();
 
-  int getLengthResponse();
+  int getResponseLength();
 
   <K extends SensorData> K getResponse(byte[] response);
 }

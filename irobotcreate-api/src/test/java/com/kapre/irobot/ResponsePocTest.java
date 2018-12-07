@@ -28,7 +28,7 @@ public class ResponsePocTest {
         return true;
       }
 
-      public int getLengthResponse() {
+      public int getResponseLength() {
         return 1;
       }
 

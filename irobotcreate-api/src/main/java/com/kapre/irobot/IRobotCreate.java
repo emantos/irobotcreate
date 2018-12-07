@@ -17,8 +17,8 @@ public class IRobotCreate {
   public Optional<SensorData> execute(Command command) {
     connection.send(command.getCommand());
     if (command.isExpectResponse()) {
-      byte[] response = connection.recv(command.getLengthResponse());
-      if (response != null && response.length == command.getLengthResponse()) {
+      byte[] response = connection.recv(command.getResponseLength());
+      if (response != null && response.length == command.getResponseLength()) {
         return Optional.of(command.getResponse(response));
       } else {
         throw new RuntimeException("Response is null or not of expected length.");

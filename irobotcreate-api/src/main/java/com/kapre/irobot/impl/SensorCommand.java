@@ -23,7 +23,7 @@ public class SensorCommand extends AbstractCommand {
     return true;
   }
 
-  public int getLengthResponse() {
+  public int getResponseLength() {
     return sensorPacket.numBytesResponse;
   }
 
