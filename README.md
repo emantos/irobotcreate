@@ -1,4 +1,4 @@
-irobotcreate
+iRobotCreate
 ============
 
 irobotcreate is my attempt to create a Command-based API written in Java for the iRobot Create.
@@ -46,6 +46,8 @@ How to Use (programmatically)
   ```java
   Connection connection = new SerialPortConnection("/dev/ttyUSB0", DEFAULT_TIMEOUT);
   IRobotCreate executor = new IRobotCreate(connection);
+  
+  executor.init()
   ```
 
 * Create command instance and execute it (always start with start and setFull).
@@ -59,4 +61,4 @@ How to Use (programmatically)
   executor.execute(setFull);
   executor.execute(moveTo);
   ```
-
+* The <code>CommandFactory</code> is a factory class for all primitive commands supported by <code>iRobot's Create</code>. You can also create composite commands (commands made up of several primitives). Check the <code>MoveToCommand</code> class for an example on how to create a composite command.
