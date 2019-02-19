@@ -91,35 +91,26 @@ public class CreateShell {
 
   /* build our command interpreter */
   public static CommandInterpreter<Command> buildInterpreter() {
-    CommandInterpreter<Command> interpreter = new CommandInterpreter<Command>();
-    interpreter.add("start", null, OpCommand.class,
-        Lists.newArrayList(OpCode.START));
-    interpreter.add("safe", null, OpCommand.class,
-        Lists.newArrayList(OpCode.SAFE));
-    interpreter.add("full", null, OpCommand.class,
-        Lists.newArrayList(OpCode.FULL));
-    interpreter.add("baud", "<i>", BaudCommand.class);
-    interpreter.add("demo", "<i>", DemoCommand.class);
-    interpreter.add("drive", "<s> <s>", DriveCommand.class,
-        Lists.newArrayList(OpCode.DRIVE));
-    interpreter.add("drivedirect", "<s> <s>", DriveCommand.class,
-        Lists.newArrayList(OpCode.DRIVE_DIRECT));
-    interpreter.add("led", "<f> <f> <i> <i>", LedCommand.class);
-    interpreter.add("dout", "<f> <f> <f>", DigitalOutputCommand.class);
-    interpreter.add("lowside", "<f> <f> <f>", LowSideDriver.class);
-    interpreter.add("lowsidepwm", "<i> <i> <i>", LowSideDriver.class);
-    interpreter.add("sendir", "<i>", OpCommand.class,
-        Lists.newArrayList(OpCode.SEND_IR));
-    interpreter.add("waittime", "<i>", OpCommand.class,
-        Lists.newArrayList(OpCode.WAIT_TIME));
-    interpreter.add("waitdistance", "<s>", WaitCommand.class,
-        Lists.newArrayList(OpCode.WAIT_DISTANCE));
-    interpreter.add("waitangle", "<s>", WaitCommand.class,
-        Lists.newArrayList(OpCode.WAIT_ANGLE));
-    interpreter.add("moveto", "<s> <s>", MoveToCommand.class);
-    interpreter.add("turn", "<s> <s>", TurnCommand.class);
-    interpreter.add("sensor", "<i>", SensorCommand.class);
-    return interpreter;
+    return new CommandInterpreterBuilder<Command>()
+    	.add("start", null, OpCommand.class, Lists.newArrayList(OpCode.START))
+    	.add("safe", null, OpCommand.class, Lists.newArrayList(OpCode.SAFE))
+    	.add("full", null, OpCommand.class, Lists.newArrayList(OpCode.FULL))
+    	.add("baud", "<i>", BaudCommand.class)
+    	.add("demo", "<i>", DemoCommand.class)
+    	.add("drive", "<s> <s>", DriveCommand.class, Lists.newArrayList(OpCode.DRIVE))
+    	.add("drivedirect", "<s> <s>", DriveCommand.class, Lists.newArrayList(OpCode.DRIVE_DIRECT))
+    	.add("led", "<f> <f> <i> <i>", LedCommand.class)
+    	.add("dout", "<f> <f> <f>", DigitalOutputCommand.class)
+    	.add("lowside", "<f> <f> <f>", LowSideDriver.class)
+    	.add("lowsidepwm", "<i> <i> <i>", LowSideDriver.class)
+    	.add("sendir", "<i>", OpCommand.class, Lists.newArrayList(OpCode.SEND_IR))
+    	.add("waittime", "<i>", OpCommand.class, Lists.newArrayList(OpCode.WAIT_TIME))
+    	.add("waitdistance", "<s>", WaitCommand.class, Lists.newArrayList(OpCode.WAIT_DISTANCE))
+    	.add("waitangle", "<s>", WaitCommand.class, Lists.newArrayList(OpCode.WAIT_ANGLE))
+    	.add("moveto", "<s> <s>", MoveToCommand.class)
+    	.add("turn", "<s> <s>", TurnCommand.class)
+    	.add("sensor", "<i>", SensorCommand.class)
+    	.build();
   }
 
   /* get list of serial ports and prompt user for selection */
