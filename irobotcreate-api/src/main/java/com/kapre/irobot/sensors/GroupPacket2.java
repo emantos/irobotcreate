@@ -11,14 +11,10 @@ public class GroupPacket2 extends AbstractSensorData {
 
   public GroupPacket2(String packetName, byte[] response) {
     super(packetName);
-    infrared = new Infrared(SensorPacket.INFRARED_BYTE.packetName,
-        new byte[] { response[0] });
-    buttons = new Buttons(SensorPacket.BUTTONS.packetName,
-        new byte[] { response[1] });
-    distance = new Distance(SensorPacket.DISTANCE.packetName, new byte[] {
-        response[2], response[3] });
-    angle = new Angle(SensorPacket.ANGLE.packetName, new byte[] { response[4],
-        response[5] });
+    infrared = new Infrared(SensorPacket.INFRARED_BYTE.packetName, new byte[] {response[0]});
+    buttons = new Buttons(SensorPacket.BUTTONS.packetName, new byte[] {response[1]});
+    distance = new Distance(SensorPacket.DISTANCE.packetName, new byte[] {response[2], response[3]});
+    angle = new Angle(SensorPacket.ANGLE.packetName, new byte[] {response[4], response[5]});
   }
 
   public Infrared getInfrared() {
@@ -38,8 +34,7 @@ public class GroupPacket2 extends AbstractSensorData {
   }
 
   public String toString() {
-    return String.format("[%s] = [%s, %s, %s, %s]", getPacketName(),
-        infrared.toString(), buttons.toString(), distance.toString(),
-        angle.toString());
+    return String.format("[%s] = [%s, %s, %s, %s]", getPacketName(), infrared.toString(), buttons.toString(),
+        distance.toString(), angle.toString());
   }
 }

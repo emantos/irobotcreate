@@ -3,10 +3,7 @@ package com.kapre.irobot.enums;
 import com.google.common.base.Optional;
 
 public enum OiMode {
-  OFF(0),
-  PASSIVE(1),
-  SAFE(2),
-  FULL(3);
+  OFF(0), PASSIVE(1), SAFE(2), FULL(3);
 
   public int number;
 

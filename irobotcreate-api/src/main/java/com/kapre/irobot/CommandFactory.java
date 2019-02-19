@@ -44,23 +44,19 @@ public class CommandFactory {
     return DriveCommand.getDriveDirect(velocityLeft, velocityRight);
   }
 
-  public static Command setLed(boolean play, boolean advance, int powerColor,
-      int powerIntensity) {
+  public static Command setLed(boolean play, boolean advance, int powerColor, int powerIntensity) {
     return new LedCommand(play, advance, powerColor, powerIntensity);
   }
 
-  public static Command setDigitalOutput(boolean pin20, boolean pin7,
-      boolean pin19) {
+  public static Command setDigitalOutput(boolean pin20, boolean pin7, boolean pin19) {
     return new DigitalOutputCommand(pin20, pin7, pin19);
   }
 
-  public static Command setPwmLowSide(int dutyCycle0, int dutyCycle1,
-      int dutyCycle2) {
+  public static Command setPwmLowSide(int dutyCycle0, int dutyCycle1, int dutyCycle2) {
     return new LowSideDriver(dutyCycle0, dutyCycle1, dutyCycle2);
   }
 
-  public static Command setLowSide(boolean driver0, boolean driver1,
-      boolean driver2) {
+  public static Command setLowSide(boolean driver0, boolean driver1, boolean driver2) {
     return new LowSideDriver(driver0, driver1, driver2);
   }
 
@@ -87,7 +83,7 @@ public class CommandFactory {
   public static Command sensor(int packetId) {
     return new SensorCommand(packetId);
   }
-  
+
   public static Command moveTo(Short distance, Short velocity) {
     return new MoveToCommand(distance, velocity);
   }

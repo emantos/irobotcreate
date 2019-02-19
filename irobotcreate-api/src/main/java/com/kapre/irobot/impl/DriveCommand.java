@@ -16,8 +16,7 @@ public class DriveCommand extends AbstractCommand {
     return new DriveCommand(OpCode.DRIVE, velocity, radius);
   }
 
-  public static DriveCommand getDriveDirect(short velocityLeft,
-      short velocityRight) {
+  public static DriveCommand getDriveDirect(short velocityLeft, short velocityRight) {
     return new DriveCommand(OpCode.DRIVE_DIRECT, velocityLeft, velocityRight);
   }
 
@@ -49,8 +48,7 @@ public class DriveCommand extends AbstractCommand {
     } else if (secondParameter < -2000) {
       secondParameter = (short) 0xffff;
     }
-    setCommand(new byte[] { (byte) op.op(), (byte) (firstParameter >>> 8),
-        (byte) (firstParameter & 0xff), (byte) (secondParameter >>> 8),
-        (byte) (secondParameter & 0xff) });
+    setCommand(new byte[] {(byte) op.op(), (byte) (firstParameter >>> 8), (byte) (firstParameter & 0xff),
+        (byte) (secondParameter >>> 8), (byte) (secondParameter & 0xff)});
   }
 }

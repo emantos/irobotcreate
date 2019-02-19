@@ -8,8 +8,7 @@ public class TurnCommand extends AbstractCompositeCommand {
   }
 
   public TurnCommand(Short angle, Short velocity) {
-    Command turn = angle > 0 ? DriveCommand.turnCCLW(velocity) : DriveCommand
-        .turnCLW(velocity);
+    Command turn = angle > 0 ? DriveCommand.turnCCLW(velocity) : DriveCommand.turnCLW(velocity);
     setCommand(turn, WaitCommand.waitAngle(angle), DriveCommand.stop());
   }
 }

@@ -1,7 +1,6 @@
 package com.kapre.irobot.sensors;
 
 import java.util.Arrays;
-
 import com.kapre.irobot.enums.SensorPacket;
 
 public class GroupPacket6 extends AbstractSensorData {
@@ -14,16 +13,11 @@ public class GroupPacket6 extends AbstractSensorData {
 
   public GroupPacket6(String packetName, byte[] response) {
     super(packetName);
-    packet1 = new GroupPacket1(SensorPacket.GROUP_PACKET_1.packetName,
-        Arrays.copyOfRange(response, 0, 10));
-    packet2 = new GroupPacket2(SensorPacket.GROUP_PACKET_2.packetName,
-        Arrays.copyOfRange(response, 10, 16));
-    packet3 = new GroupPacket3(SensorPacket.GROUP_PACKET_3.packetName,
-        Arrays.copyOfRange(response, 16, 26));
-    packet4 = new GroupPacket4(SensorPacket.GROUP_PACKET_4.packetName,
-        Arrays.copyOfRange(response, 26, 40));
-    packet5 = new GroupPacket5(SensorPacket.GROUP_PACKET_5.packetName,
-        Arrays.copyOfRange(response, 40, 52));
+    packet1 = new GroupPacket1(SensorPacket.GROUP_PACKET_1.packetName, Arrays.copyOfRange(response, 0, 10));
+    packet2 = new GroupPacket2(SensorPacket.GROUP_PACKET_2.packetName, Arrays.copyOfRange(response, 10, 16));
+    packet3 = new GroupPacket3(SensorPacket.GROUP_PACKET_3.packetName, Arrays.copyOfRange(response, 16, 26));
+    packet4 = new GroupPacket4(SensorPacket.GROUP_PACKET_4.packetName, Arrays.copyOfRange(response, 26, 40));
+    packet5 = new GroupPacket5(SensorPacket.GROUP_PACKET_5.packetName, Arrays.copyOfRange(response, 40, 52));
   }
 
   public GroupPacket1 getPacket1() {
@@ -47,9 +41,8 @@ public class GroupPacket6 extends AbstractSensorData {
   }
 
   public String toString() {
-    return String.format("[%s] = [%s, %s, %s, %s, %s]", getPacketName(),
-        packet1.toString(), packet2.toString(), packet3.toString(),
-        packet4.toString(), packet5.toString());
+    return String.format("[%s] = [%s, %s, %s, %s, %s]", getPacketName(), packet1.toString(), packet2.toString(),
+        packet3.toString(), packet4.toString(), packet5.toString());
   }
 
 }

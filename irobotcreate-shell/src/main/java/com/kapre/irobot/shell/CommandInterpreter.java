@@ -5,105 +5,103 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
 import org.javatuples.Pair;
-
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 public class CommandInterpreter<K> {
-	public enum ParameterType {
-		INT, SHORT, BYTE, BOOL;
-	}
+  public enum ParameterType {
+    INT, SHORT, BYTE, BOOL;
+  }
 
-	private Map<String, List<ParameterType>> commandParamTypeMap = Maps.newLinkedHashMap();
-	private Map<String, Class<? extends K>> commandResultClassMap = Maps.newLinkedHashMap();
-	private Map<String, List<?>> commandDefaultParameters = Maps.newLinkedHashMap();
-	private Map<String, List<Class<?>>> commandDefaultParameterTypes = Maps.newLinkedHashMap();
-	
-	public CommandInterpreter(Map<String, List<ParameterType>> commandParamTypeMap,
-			Map<String, Class<? extends K>> commandResultClassMap, Map<String, List<?>> commandDefaultParameters,
-			Map<String, List<Class<?>>> commandDefaultParameterTypes) {
-		this.commandParamTypeMap = commandParamTypeMap;
-		this.commandResultClassMap = commandResultClassMap;
-		this.commandDefaultParameters = commandDefaultParameters;
-		this.commandDefaultParameterTypes = commandDefaultParameterTypes;
-	}
+  private Map<String, List<ParameterType>> commandParamTypeMap = Maps.newLinkedHashMap();
+  private Map<String, Class<? extends K>> commandResultClassMap = Maps.newLinkedHashMap();
+  private Map<String, List<?>> commandDefaultParameters = Maps.newLinkedHashMap();
+  private Map<String, List<Class<?>>> commandDefaultParameterTypes = Maps.newLinkedHashMap();
 
-	public Optional<? extends K> interpret(String command) throws InterpreterException {
-		if (command == null || command.trim().isEmpty()) {
-			return null;
-		}
+  public CommandInterpreter(Map<String, List<ParameterType>> commandParamTypeMap,
+      Map<String, Class<? extends K>> commandResultClassMap, Map<String, List<?>> commandDefaultParameters,
+      Map<String, List<Class<?>>> commandDefaultParameterTypes) {
+    this.commandParamTypeMap = commandParamTypeMap;
+    this.commandResultClassMap = commandResultClassMap;
+    this.commandDefaultParameters = commandDefaultParameters;
+    this.commandDefaultParameterTypes = commandDefaultParameterTypes;
+  }
 
-		Scanner scanner = new Scanner(command);
-		String commandName = scanner.next();
+  public Optional<? extends K> interpret(String command) throws InterpreterException {
+    if (command == null || command.trim().isEmpty()) {
+      return null;
+    }
 
-		/* get default parameters and default parameter types for command */
-		List<Class<?>> parameterTypes = Lists.newArrayList(getDefaultParameterTypesForCommand(commandName));
-		List<Object> parameters = Lists.newArrayList(getDefaultParametersForCommand(commandName));
+    Scanner scanner = new Scanner(command);
+    String commandName = scanner.next();
 
-		/* if command given has parameters, get the parameters in the command string */
-		if (scanner.hasNext()) {
-			List<ParameterType> paramTypes = commandParamTypeMap.get(commandName);
-			if (paramTypes != null) {
-				Pair<List<Class<?>>, List<?>> commandParameters = getParametersForArgument(scanner, paramTypes);
-				parameters.addAll(commandParameters.getValue1());
-				parameterTypes.addAll(commandParameters.getValue0());
-			}
-		}
+    /* get default parameters and default parameter types for command */
+    List<Class<?>> parameterTypes = Lists.newArrayList(getDefaultParameterTypesForCommand(commandName));
+    List<Object> parameters = Lists.newArrayList(getDefaultParametersForCommand(commandName));
 
-		/* get the command class for the given command name so we can instantiate it. */
-		Class<? extends K> resultClass = commandResultClassMap.get(commandName);
-		if (resultClass == null) {
-			return Optional.absent();
-		}
+    /* if command given has parameters, get the parameters in the command string */
+    if (scanner.hasNext()) {
+      List<ParameterType> paramTypes = commandParamTypeMap.get(commandName);
+      if (paramTypes != null) {
+        Pair<List<Class<?>>, List<?>> commandParameters = getParametersForArgument(scanner, paramTypes);
+        parameters.addAll(commandParameters.getValue1());
+        parameterTypes.addAll(commandParameters.getValue0());
+      }
+    }
 
-		/* instantiate class by using constructors */
-		try {
-			Constructor<? extends K> constructor = resultClass
-					.getConstructor(parameterTypes.toArray(new Class<?>[parameterTypes.size()]));
+    /* get the command class for the given command name so we can instantiate it. */
+    Class<? extends K> resultClass = commandResultClassMap.get(commandName);
+    if (resultClass == null) {
+      return Optional.absent();
+    }
 
-			return Optional.of(constructor.newInstance(parameters.toArray(new Object[parameters.size()])));
-		} catch (Throwable e) {
-			throw new InterpreterException(e);
-		} finally {
-			scanner.close();
-		}
-	}
+    /* instantiate class by using constructors */
+    try {
+      Constructor<? extends K> constructor =
+          resultClass.getConstructor(parameterTypes.toArray(new Class<?>[parameterTypes.size()]));
 
-	private Pair<List<Class<?>>, List<?>> getParametersForArgument(Scanner scanner, List<ParameterType> paramTypes) {
-		List<Object> parameters = Lists.newArrayList();
-		List<Class<?>> parameterTypes = Lists.newArrayList();
+      return Optional.of(constructor.newInstance(parameters.toArray(new Object[parameters.size()])));
+    } catch (Throwable e) {
+      throw new InterpreterException(e);
+    } finally {
+      scanner.close();
+    }
+  }
 
-		for (ParameterType paramType : paramTypes) {
-			if (paramType == ParameterType.INT && scanner.hasNextInt()) {
-				parameters.add(new Integer(scanner.nextInt()));
-				parameterTypes.add(Integer.class);
-			} else if (paramType == ParameterType.SHORT && scanner.hasNextShort()) {
-				parameters.add(new Short(scanner.nextShort()));
-				parameterTypes.add(Short.class);
-			} else if (paramType == ParameterType.BYTE && scanner.hasNextByte()) {
-				parameters.add(new Byte(scanner.nextByte()));
-				parameterTypes.add(Byte.class);
-			} else if (paramType == ParameterType.BOOL && scanner.hasNextBoolean()) {
-				parameters.add(new Boolean(scanner.nextBoolean()));
-				parameterTypes.add(Boolean.class);
-			} else {
-				break;
-			}
-		}
+  private Pair<List<Class<?>>, List<?>> getParametersForArgument(Scanner scanner, List<ParameterType> paramTypes) {
+    List<Object> parameters = Lists.newArrayList();
+    List<Class<?>> parameterTypes = Lists.newArrayList();
 
-		return new Pair<List<Class<?>>, List<?>>(parameterTypes, parameters);
-	}
+    for (ParameterType paramType : paramTypes) {
+      if (paramType == ParameterType.INT && scanner.hasNextInt()) {
+        parameters.add(new Integer(scanner.nextInt()));
+        parameterTypes.add(Integer.class);
+      } else if (paramType == ParameterType.SHORT && scanner.hasNextShort()) {
+        parameters.add(new Short(scanner.nextShort()));
+        parameterTypes.add(Short.class);
+      } else if (paramType == ParameterType.BYTE && scanner.hasNextByte()) {
+        parameters.add(new Byte(scanner.nextByte()));
+        parameterTypes.add(Byte.class);
+      } else if (paramType == ParameterType.BOOL && scanner.hasNextBoolean()) {
+        parameters.add(new Boolean(scanner.nextBoolean()));
+        parameterTypes.add(Boolean.class);
+      } else {
+        break;
+      }
+    }
 
-	private List<?> getDefaultParametersForCommand(String commandName) {
-		List<?> defaultParameters = commandDefaultParameters.get(commandName);
-		return defaultParameters == null ? Collections.<Object>emptyList() : defaultParameters;
-	}
+    return new Pair<List<Class<?>>, List<?>>(parameterTypes, parameters);
+  }
 
-	private List<Class<?>> getDefaultParameterTypesForCommand(String commandName) {
-		List<Class<?>> defaultParameterTypes = commandDefaultParameterTypes.get(commandName);
-		return defaultParameterTypes == null ? Collections.<Class<?>>emptyList() : defaultParameterTypes;
-	}
+  private List<?> getDefaultParametersForCommand(String commandName) {
+    List<?> defaultParameters = commandDefaultParameters.get(commandName);
+    return defaultParameters == null ? Collections.<Object>emptyList() : defaultParameters;
+  }
+
+  private List<Class<?>> getDefaultParameterTypesForCommand(String commandName) {
+    List<Class<?>> defaultParameterTypes = commandDefaultParameterTypes.get(commandName);
+    return defaultParameterTypes == null ? Collections.<Class<?>>emptyList() : defaultParameterTypes;
+  }
 }

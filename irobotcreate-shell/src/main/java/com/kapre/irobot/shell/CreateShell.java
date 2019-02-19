@@ -39,16 +39,16 @@ public class CreateShell {
 
     Connection connection = new SerialPortConnection(serialPort.get(), DEFAULT_TIMEOUT);
     IRobotCreate executor = new IRobotCreate(connection);
-    
+
     CommandInterpreter<Command> commandInterpreter = buildInterpreter();
     try {
       /* open connection to irobot */
       executor.init();
-      
+
       while (true) {
         /* read command */
         String cmd = console.readLine("> ");
-        
+
         /* quit if given quit command */
         if (cmd.trim().equalsIgnoreCase("quit")) {
           break;
@@ -56,8 +56,7 @@ public class CreateShell {
 
         try {
           /* Interpret command given and build Command object */
-          Optional<? extends Command> result = commandInterpreter
-              .interpret(cmd);
+          Optional<? extends Command> result = commandInterpreter.interpret(cmd);
           if (!result.isPresent()) {
             console.format("'%s' is not a valid command\n", cmd);
             continue;
@@ -66,7 +65,7 @@ public class CreateShell {
           /* execute command object */
           Command command = result.get();
           Optional<SensorData> response = executor.execute(command);
-          if(response.isPresent()) {
+          if (response.isPresent()) {
             console.format("Command successful. Response: %s\n", response.get().toString());
           } else {
             console.format("Command successful.\n");
@@ -80,9 +79,9 @@ public class CreateShell {
       executor.shutdown();
     } catch (RuntimeException e) {
       printException(console, e);
-    } 
+    }
   }
-  
+
   private static void printException(Console console, RuntimeException e) {
     console.format("Exception : \n");
     e.printStackTrace(console.writer());
@@ -92,25 +91,20 @@ public class CreateShell {
   /* build our command interpreter */
   public static CommandInterpreter<Command> buildInterpreter() {
     return new CommandInterpreterBuilder<Command>()
-    	.add("start", null, OpCommand.class, Lists.newArrayList(OpCode.START))
-    	.add("safe", null, OpCommand.class, Lists.newArrayList(OpCode.SAFE))
-    	.add("full", null, OpCommand.class, Lists.newArrayList(OpCode.FULL))
-    	.add("baud", "<i>", BaudCommand.class)
-    	.add("demo", "<i>", DemoCommand.class)
-    	.add("drive", "<s> <s>", DriveCommand.class, Lists.newArrayList(OpCode.DRIVE))
-    	.add("drivedirect", "<s> <s>", DriveCommand.class, Lists.newArrayList(OpCode.DRIVE_DIRECT))
-    	.add("led", "<f> <f> <i> <i>", LedCommand.class)
-    	.add("dout", "<f> <f> <f>", DigitalOutputCommand.class)
-    	.add("lowside", "<f> <f> <f>", LowSideDriver.class)
-    	.add("lowsidepwm", "<i> <i> <i>", LowSideDriver.class)
-    	.add("sendir", "<i>", OpCommand.class, Lists.newArrayList(OpCode.SEND_IR))
-    	.add("waittime", "<i>", OpCommand.class, Lists.newArrayList(OpCode.WAIT_TIME))
-    	.add("waitdistance", "<s>", WaitCommand.class, Lists.newArrayList(OpCode.WAIT_DISTANCE))
-    	.add("waitangle", "<s>", WaitCommand.class, Lists.newArrayList(OpCode.WAIT_ANGLE))
-    	.add("moveto", "<s> <s>", MoveToCommand.class)
-    	.add("turn", "<s> <s>", TurnCommand.class)
-    	.add("sensor", "<i>", SensorCommand.class)
-    	.build();
+        .add("start", null, OpCommand.class, Lists.newArrayList(OpCode.START))
+        .add("safe", null, OpCommand.class, Lists.newArrayList(OpCode.SAFE))
+        .add("full", null, OpCommand.class, Lists.newArrayList(OpCode.FULL)).add("baud", "<i>", BaudCommand.class)
+        .add("demo", "<i>", DemoCommand.class)
+        .add("drive", "<s> <s>", DriveCommand.class, Lists.newArrayList(OpCode.DRIVE))
+        .add("drivedirect", "<s> <s>", DriveCommand.class, Lists.newArrayList(OpCode.DRIVE_DIRECT))
+        .add("led", "<f> <f> <i> <i>", LedCommand.class).add("dout", "<f> <f> <f>", DigitalOutputCommand.class)
+        .add("lowside", "<f> <f> <f>", LowSideDriver.class).add("lowsidepwm", "<i> <i> <i>", LowSideDriver.class)
+        .add("sendir", "<i>", OpCommand.class, Lists.newArrayList(OpCode.SEND_IR))
+        .add("waittime", "<i>", OpCommand.class, Lists.newArrayList(OpCode.WAIT_TIME))
+        .add("waitdistance", "<s>", WaitCommand.class, Lists.newArrayList(OpCode.WAIT_DISTANCE))
+        .add("waitangle", "<s>", WaitCommand.class, Lists.newArrayList(OpCode.WAIT_ANGLE))
+        .add("moveto", "<s> <s>", MoveToCommand.class).add("turn", "<s> <s>", TurnCommand.class)
+        .add("sensor", "<i>", SensorCommand.class).build();
   }
 
   /* get list of serial ports and prompt user for selection */

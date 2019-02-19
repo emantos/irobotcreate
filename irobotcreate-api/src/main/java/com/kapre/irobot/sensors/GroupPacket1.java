@@ -14,23 +14,15 @@ public class GroupPacket1 extends AbstractSensorData {
 
   public GroupPacket1(String packetName, byte[] response) {
     super(packetName);
-    this.bumpsWheelDrops = new BumpsWheelDrops(
-        SensorPacket.BUMPS_WHEEL_DROPS.packetName, new byte[] { response[0] });
-    this.wall = new BooleanData(SensorPacket.WALL.packetName,
-        new byte[] { response[1] });
-    this.cliffLeft = new BooleanData(SensorPacket.CLIFF_LEFT.packetName,
-        new byte[] { response[2] });
-    this.cliffFrontLeft = new BooleanData(
-        SensorPacket.CLIFF_FRONT_LEFT.packetName, new byte[] { response[3] });
-    this.cliffFrontRight = new BooleanData(
-        SensorPacket.CLIFF_FRONT_RIGHT.packetName, new byte[] { response[4] });
-    this.cliffRight = new BooleanData(SensorPacket.CLIFF_RIGHT.packetName,
-        new byte[] { response[5] });
-    this.virtualWall = new BooleanData(SensorPacket.VIRTUAL_WALL.packetName,
-        new byte[] { response[6] });
+    this.bumpsWheelDrops = new BumpsWheelDrops(SensorPacket.BUMPS_WHEEL_DROPS.packetName, new byte[] {response[0]});
+    this.wall = new BooleanData(SensorPacket.WALL.packetName, new byte[] {response[1]});
+    this.cliffLeft = new BooleanData(SensorPacket.CLIFF_LEFT.packetName, new byte[] {response[2]});
+    this.cliffFrontLeft = new BooleanData(SensorPacket.CLIFF_FRONT_LEFT.packetName, new byte[] {response[3]});
+    this.cliffFrontRight = new BooleanData(SensorPacket.CLIFF_FRONT_RIGHT.packetName, new byte[] {response[4]});
+    this.cliffRight = new BooleanData(SensorPacket.CLIFF_RIGHT.packetName, new byte[] {response[5]});
+    this.virtualWall = new BooleanData(SensorPacket.VIRTUAL_WALL.packetName, new byte[] {response[6]});
     this.lowSideDriverWheelOvercurrent = new LowSideDriverWheelOvercurrent(
-        SensorPacket.LOW_SIDE_DRIVER_OVERCURRENTS.packetName,
-        new byte[] { response[7] });
+        SensorPacket.LOW_SIDE_DRIVER_OVERCURRENTS.packetName, new byte[] {response[7]});
   }
 
   public BumpsWheelDrops getBumpsWheelDrops() {
@@ -66,10 +58,8 @@ public class GroupPacket1 extends AbstractSensorData {
   }
 
   public String toString() {
-    return String.format("[%s] = [%s, %s, %s, %s, %s, %s, %s, %s]",
-        getPacketName(), bumpsWheelDrops.toString(), wall.toString(),
-        cliffLeft.toString(), cliffFrontLeft.toString(),
-        cliffFrontRight.toString(), cliffRight.toString(),
-        virtualWall.toString(), lowSideDriverWheelOvercurrent.toString());
+    return String.format("[%s] = [%s, %s, %s, %s, %s, %s, %s, %s]", getPacketName(), bumpsWheelDrops.toString(),
+        wall.toString(), cliffLeft.toString(), cliffFrontLeft.toString(), cliffFrontRight.toString(),
+        cliffRight.toString(), virtualWall.toString(), lowSideDriverWheelOvercurrent.toString());
   }
 }

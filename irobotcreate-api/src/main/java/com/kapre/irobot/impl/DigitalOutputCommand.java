@@ -14,6 +14,6 @@ public class DigitalOutputCommand extends AbstractCommand {
     if (pin20) {
       pin = (byte) (pin | 0x04);
     }
-    setCommand(new byte[] { (byte) OpCode.DIGITAL_OUTPUT.op(), pin });
+    setCommand(new byte[] {(byte) OpCode.DIGITAL_OUTPUT.op(), pin});
   }
 }

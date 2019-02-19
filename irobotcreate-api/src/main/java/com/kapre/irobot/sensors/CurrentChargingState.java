@@ -8,13 +8,11 @@ public class CurrentChargingState extends AbstractSensorData {
 
   public CurrentChargingState(String packetName, byte[] data) {
     super(packetName);
-    Optional<ChargingState> chargingState = ChargingState
-        .getChargingState(data[0]);
+    Optional<ChargingState> chargingState = ChargingState.getChargingState(data[0]);
     if (chargingState.isPresent()) {
       state = chargingState.get();
     } else {
-      throw new IRobotSensorException("Charging State has invalid value : "
-          + data[0]);
+      throw new IRobotSensorException("Charging State has invalid value : " + data[0]);
     }
   }
 
@@ -23,7 +21,6 @@ public class CurrentChargingState extends AbstractSensorData {
   }
 
   public String toString() {
-    return String.format("[%s] = [%d - %s]", getPacketName(), state.code,
-        state.stateName);
+    return String.format("[%s] = [%d - %s]", getPacketName(), state.code, state.stateName);
   }
 }

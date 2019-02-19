@@ -1,8 +1,7 @@
 package com.kapre.irobot.sensors;
 
 public class BumpsWheelDrops extends FiveBitsData {
-  public static String[] NAMES = { "Bump Right", "Bump Left",
-      "Wheeldrop Right", "Wheeldrop Left", "Wheeldrop Caster" };
+  public static String[] NAMES = {"Bump Right", "Bump Left", "Wheeldrop Right", "Wheeldrop Left", "Wheeldrop Caster"};
 
   public BumpsWheelDrops(String packetName, byte[] response) {
     super(packetName, response);

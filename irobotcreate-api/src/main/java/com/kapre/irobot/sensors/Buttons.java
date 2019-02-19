@@ -19,8 +19,7 @@ public class Buttons extends AbstractSensorData {
   }
 
   public String toString() {
-    return String.format("[%s] = [Advance Button = %s, Play Button = %s]",
-        getPacketName(), Boolean.valueOf(advanceButton).toString(), Boolean
-            .valueOf(playButton).toString());
+    return String.format("[%s] = [Advance Button = %s, Play Button = %s]", getPacketName(),
+        Boolean.valueOf(advanceButton).toString(), Boolean.valueOf(playButton).toString());
   }
 }

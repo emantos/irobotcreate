@@ -42,23 +42,27 @@ public class ResponsePocTest {
       }
     };
 
-    TestResponse _response = test.getResponse(new byte[] { 0 });
-    Test2Response _response2 = test.getResponse(new byte[] { 1 });
+    TestResponse _response = test.getResponse(new byte[] {0});
+    Test2Response _response2 = test.getResponse(new byte[] {1});
     Assert.assertTrue(_response.getResponse());
     Assert.assertFalse(_response2.getResponse2());
 
-    SensorData responseInterface = test.getResponse(new byte[] { 0 });
-    SensorData responseInterface2 = test.getResponse(new byte[] { 1 });
+    @SuppressWarnings("unused")
+    SensorData responseInterface = test.getResponse(new byte[] {0});
+    @SuppressWarnings("unused")
+    SensorData responseInterface2 = test.getResponse(new byte[] {1});
 
     try {
-      Test2Response response2 = test.getResponse(new byte[] { 0 });
+      @SuppressWarnings("unused")
+      Test2Response response2 = test.getResponse(new byte[] {0});
       Assert.fail("should have produced a class cast exception");
     } catch (ClassCastException e) {
 
     }
 
     try {
-      TestResponse response1 = test.getResponse(new byte[] { 1 });
+      @SuppressWarnings("unused")
+      TestResponse response1 = test.getResponse(new byte[] {1});
       Assert.fail("should have produced a class cast exception");
     } catch (ClassCastException e) {
 

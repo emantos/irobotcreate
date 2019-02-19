@@ -1,9 +1,7 @@
 package com.kapre.irobot.shell;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
-
 import com.kapre.irobot.Command;
 
 public class SimpleCommandInterpreterTest {

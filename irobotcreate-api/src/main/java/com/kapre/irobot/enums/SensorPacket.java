@@ -47,11 +47,7 @@ public enum SensorPacket {
   CLIFF_FRONT_LEFT(10, "Cliff Front Left", 1, BooleanData.class),
   CLIFF_FRONT_RIGHT(11, "Cliff Front Right", 1, BooleanData.class),
   VIRTUAL_WALL(13, "Virtual Wall", 1, BooleanData.class),
-  LOW_SIDE_DRIVER_OVERCURRENTS(
-      14,
-      "Low Side Driver and Wheel Overcurrents",
-      1,
-      LowSideDriverWheelOvercurrent.class),
+  LOW_SIDE_DRIVER_OVERCURRENTS(14, "Low Side Driver and Wheel Overcurrents", 1, LowSideDriverWheelOvercurrent.class),
   INFRARED_BYTE(17, "Infrared Byte", 1, Infrared.class),
   BUTTONS(18, "Buttons", 1, Buttons.class),
   DISTANCE(19, "Distance", 2, Distance.class),
@@ -67,45 +63,24 @@ public enum SensorPacket {
   CLIFF_FRONT_LEFT_SIGNAL(29, "Cliff Front Left Signal", 2, CliffSignal.class),
   CLIFF_FRONT_RIGHT_SIGNAL(30, "Cliff Front Right Signal", 2, CliffSignal.class),
   CLIFF_RIGHT_SIGNAL(31, "Cliff Right Signal", 2, CliffSignal.class),
-  CARGO_BAY_DIGITAL_INPUTS(
-      32,
-      "Cargo Bay Digital Inputs",
-      1,
-      CargoBayDigitalInputs.class),
-  CARGO_BAY_ANALOG_SIGNAL(
-      33,
-      "Cargo Bay Analog Signal",
-      2,
-      CargoBayAnalogSignal.class),
-  CHARGING_SOURCES_AVAILABLE(
-      34,
-      "Charging Sources Available",
-      1,
-      ChargingSourcesAvailable.class),
+  CARGO_BAY_DIGITAL_INPUTS(32, "Cargo Bay Digital Inputs", 1, CargoBayDigitalInputs.class),
+  CARGO_BAY_ANALOG_SIGNAL(33, "Cargo Bay Analog Signal", 2, CargoBayAnalogSignal.class),
+  CHARGING_SOURCES_AVAILABLE(34, "Charging Sources Available", 1, ChargingSourcesAvailable.class),
   OI_MODE(35, "OI Mode", 1, OiModeData.class),
   SONG_NUMBER(36, "Song Number", 1, UnsignedByteData.class),
   SONG_PLAYING(37, "Song Playing", 1, UnsignedByteData.class),
   NUM_STREAM_PACKETS(38, "Number of Stream Packets", 1, UnsignedByteData.class),
   REQUESTED_VELOCITY(39, "Requested Velocity", 2, RequestedVelocity.class),
   REQUESTED_RADIUS(40, "Request Radius", 2, RequestedRadius.class),
-  REQUESTED_RIGHT_VELOCITY(
-      41,
-      "Requested Right Velocity",
-      2,
-      RequestedVelocity.class),
-  REQUESTED_LEFT_VELOCITY(
-      42,
-      "Requested Left Velocity",
-      2,
-      RequestedVelocity.class);
+  REQUESTED_RIGHT_VELOCITY(41, "Requested Right Velocity", 2, RequestedVelocity.class),
+  REQUESTED_LEFT_VELOCITY(42, "Requested Left Velocity", 2, RequestedVelocity.class);
 
   public int numBytesResponse;
   public int packetId;
   public String packetName;
   public Class<? extends SensorData> responseClassType;
 
-  SensorPacket(int packetId, String packetName, int numBytesResponse,
-      Class<? extends SensorData> responseClassType) {
+  SensorPacket(int packetId, String packetName, int numBytesResponse, Class<? extends SensorData> responseClassType) {
     this.packetId = packetId;
     this.packetName = packetName;
     this.numBytesResponse = numBytesResponse;

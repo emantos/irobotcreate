@@ -37,9 +37,9 @@ public class CargoBayDigitalInputs extends AbstractSensorData {
   }
 
   public String toString() {
-    return String.format("[%s] = [device detect = %s, digital input 3 = %s, "
-        + "digital input 2 = %s, digital input 1 = %s, digital input 0 = %s]",
-        getPacketName(), deviceDetect, digitalInput3, digitalInput2,
-        digitalInput1, digitalInput0);
+    return String.format(
+        "[%s] = [device detect = %s, digital input 3 = %s, "
+            + "digital input 2 = %s, digital input 1 = %s, digital input 0 = %s]",
+        getPacketName(), deviceDetect, digitalInput3, digitalInput2, digitalInput1, digitalInput0);
   }
 }

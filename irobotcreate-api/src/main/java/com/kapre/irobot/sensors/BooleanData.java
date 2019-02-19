@@ -21,7 +21,6 @@ public class BooleanData extends AbstractSensorData {
   }
 
   public String toString() {
-    return String.format("[%s] = %s", getPacketName(), flag.isPresent() ? flag
-        .get().toString() : "No response.");
+    return String.format("[%s] = %s", getPacketName(), flag.isPresent() ? flag.get().toString() : "No response.");
   }
 }

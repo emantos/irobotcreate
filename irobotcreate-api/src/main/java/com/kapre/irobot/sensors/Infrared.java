@@ -13,7 +13,6 @@ public class Infrared extends UnsignedByteData {
   }
 
   public String toString() {
-    return String.format("[%s] = %s", getPacketName(), getInfraredByte()
-        .orNull());
+    return String.format("[%s] = %s", getPacketName(), getInfraredByte().orNull());
   }
 }

@@ -13,7 +13,6 @@ public class DemoCommand extends AbstractCommand {
   }
 
   public DemoCommand(Integer parameter) {
-    setCommand(new byte[] { (byte) OpCode.DEMO.op(),
-        (byte) Demo.getDemo(parameter).or(Demo.ABORT).getDemoNumber() });
+    setCommand(new byte[] {(byte) OpCode.DEMO.op(), (byte) Demo.getDemo(parameter).or(Demo.ABORT).getDemoNumber()});
   }
 }

@@ -5,11 +5,10 @@ import com.kapre.irobot.enums.OpCode;
 
 public class BaudCommand extends AbstractCommand {
   public BaudCommand(Baud baud) {
-    setCommand(new byte[] { (byte) OpCode.BAUD.op(), (byte) baud.getBaudCode() });
+    setCommand(new byte[] {(byte) OpCode.BAUD.op(), (byte) baud.getBaudCode()});
   }
 
   public BaudCommand(Integer parameter) {
-    setCommand(new byte[] { (byte) OpCode.BAUD.op(),
-        (byte) Baud.getBaud(parameter).or(Baud._115200).getBaudCode() });
+    setCommand(new byte[] {(byte) OpCode.BAUD.op(), (byte) Baud.getBaud(parameter).or(Baud._115200).getBaudCode()});
   }
 }

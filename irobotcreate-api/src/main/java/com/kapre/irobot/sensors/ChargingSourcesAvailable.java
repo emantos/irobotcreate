@@ -19,7 +19,6 @@ public class ChargingSourcesAvailable extends AbstractSensorData {
   }
 
   public String toString() {
-    return String.format("[%s] = [Home Base = %s, Internal Charger = %s]",
-        getPacketName(), homeBase, internalCharger);
+    return String.format("[%s] = [Home Base = %s, Internal Charger = %s]", getPacketName(), homeBase, internalCharger);
   }
 }

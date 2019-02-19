@@ -1,7 +1,6 @@
 package com.kapre.irobot.impl;
 
 import java.util.Arrays;
-
 import com.kapre.irobot.Command;
 import com.kapre.irobot.SensorData;
 

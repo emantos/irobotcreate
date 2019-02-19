@@ -1,7 +1,7 @@
 package com.kapre.irobot.sensors;
 
 public abstract class FiveBitsData extends AbstractSensorData {
-  public Boolean[] parameters = new Boolean[] { null, null, null, null, null };
+  public Boolean[] parameters = new Boolean[] {null, null, null, null, null};
 
   public FiveBitsData(String packetName, byte[] response) {
     super(packetName);
@@ -20,12 +20,10 @@ public abstract class FiveBitsData extends AbstractSensorData {
 
   public String toString() {
     String[] parameterNames = getParameterNames();
-    return String.format(
-        "[%s] = [%s = %s, %s = %s, %s = %s, %s = %s, %s = %s]",
-        getPacketName(), parameterNames[0], nullOrStr(parameters[0]),
-        parameterNames[1], nullOrStr(parameters[1]), parameterNames[2],
-        nullOrStr(parameters[2]), parameterNames[3], nullOrStr(parameters[3]),
-        parameterNames[4], nullOrStr(parameters[4]));
+    return String.format("[%s] = [%s = %s, %s = %s, %s = %s, %s = %s, %s = %s]", getPacketName(), parameterNames[0],
+        nullOrStr(parameters[0]), parameterNames[1], nullOrStr(parameters[1]), parameterNames[2],
+        nullOrStr(parameters[2]), parameterNames[3], nullOrStr(parameters[3]), parameterNames[4],
+        nullOrStr(parameters[4]));
   }
 
   private String nullOrStr(Boolean b) {

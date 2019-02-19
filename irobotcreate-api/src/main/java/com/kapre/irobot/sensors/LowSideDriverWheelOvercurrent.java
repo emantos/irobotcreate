@@ -1,8 +1,7 @@
 package com.kapre.irobot.sensors;
 
 public class LowSideDriverWheelOvercurrent extends FiveBitsData {
-  private static String[] NAMES = { "LD-1", "LD-0", "LD-2", "Right Wheel",
-      "Left Wheel" };
+  private static String[] NAMES = {"LD-1", "LD-0", "LD-2", "Right Wheel", "Left Wheel"};
 
   public LowSideDriverWheelOvercurrent(String packetName, byte[] response) {
     super(packetName, response);

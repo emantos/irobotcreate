@@ -1,9 +1,7 @@
 package com.kapre.irobot;
 
 import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
-
 import com.kapre.irobot.enums.Baud;
 import com.kapre.irobot.enums.Demo;
 

@@ -17,7 +17,6 @@ public class WaitCommand extends AbstractCommand {
   }
 
   public WaitCommand(OpCode code, Short params) {
-    setCommand(new byte[] { (byte) code.op(), (byte) (params >>> 8),
-        (byte) (params & 0xff) });
+    setCommand(new byte[] {(byte) code.op(), (byte) (params >>> 8), (byte) (params & 0xff)});
   }
 }

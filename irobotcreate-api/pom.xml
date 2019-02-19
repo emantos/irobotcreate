@@ -20,21 +20,19 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>16.0.1</version>
     </dependency>
     <dependency>
       <groupId>org.javatuples</groupId>
       <artifactId>javatuples</artifactId>
-      <version>1.2</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
+  
   <build>
     <plugins>
       <plugin>

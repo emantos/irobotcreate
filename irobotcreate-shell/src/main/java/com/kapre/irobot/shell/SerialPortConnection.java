@@ -1,7 +1,6 @@
 package com.kapre.irobot.shell;
 
 import com.kapre.irobot.Connection;
-
 import jssc.SerialPort;
 import jssc.SerialPortException;
 import jssc.SerialPortTimeoutException;
@@ -19,8 +18,8 @@ public class SerialPortConnection implements Connection {
   public void open() {
     try {
       serialPort.openPort();
-      serialPort.setParams(SerialPort.BAUDRATE_57600, SerialPort.DATABITS_8,
-          SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+      serialPort.setParams(SerialPort.BAUDRATE_57600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1,
+          SerialPort.PARITY_NONE);
     } catch (SerialPortException e) {
       throw new ConnectionException("Error opening serial port", e);
     }
@@ -38,8 +37,8 @@ public class SerialPortConnection implements Connection {
     try {
       return serialPort.readBytes(length, recvTimeout);
     } catch (SerialPortTimeoutException e) {
-      throw new ConnectionException("Not able to receive " + length
-          + " amount of bytes from serial port within " + recvTimeout, e);
+      throw new ConnectionException(
+          "Not able to receive " + length + " amount of bytes from serial port within " + recvTimeout, e);
     } catch (SerialPortException e) {
       throw new ConnectionException("Error receiving through serial port", e);
     }
